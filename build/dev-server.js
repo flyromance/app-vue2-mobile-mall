@@ -28,7 +28,12 @@ const compiler = webpack(webpackConfig)
 
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
-  quiet: true
+  quiet: true,
+  proxy: {
+    '/api/*': {
+      target: 'http://localhost:9090'
+    }
+  }
 })
 
 const hotMiddleware = require('webpack-hot-middleware')(compiler, {
