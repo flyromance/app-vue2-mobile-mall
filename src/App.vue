@@ -30,14 +30,26 @@ export default {
 </script>
 
 <style lang="stylus">
+@import './common/style/mixin.styl'
+
 .tab {
   width: 100%;
   display: flex;
   line-height: 40px;
   height: 40px;
+  border-1px(rgba(7, 17, 27, 0.1))
   .tab-item {
     flex: 1;
     text-align: center;
+    
+    a {
+      display block
+      font-size 14px
+      color: rgb(77, 85, 93)
+    }
+    a.active {
+      color: red
+    }
   }
 }
 </style>

@@ -6,10 +6,14 @@ import Seller from '@/components/Seller'
 
 Vue.use(Router)
 
-export default new Router({
+const router = new Router({
   routes: [
     {
+      path: '/',
+      redirect: '/goods'
+    }, {
       path: '/goods',
+      // alias: '/',
       name: 'goods',
       component: Goods
     }, {
@@ -21,5 +25,12 @@ export default new Router({
       name: 'seller',
       component: Seller
     }
-  ]
+  ],
+  // linkActiveClass: '',
+  linkExactActiveClass: 'active',
+  mode: 'history' // 'hash', 'abstract'
 })
+
+// router.push('/goods')
+
+export default router
