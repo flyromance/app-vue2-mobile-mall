@@ -1,8 +1,8 @@
 <template>
   <div id="app">
-  <v-header></v-header>
+  <v-header :seller="seller"></v-header>
 
-  <div class="tab">
+  <div class="tab border-1px">
     <div class="tab-item">
       <router-link to="/goods">商品</router-link>
     </div>
@@ -23,6 +23,22 @@ import Header from '@/components/header'
 
 export default {
   name: 'app',
+  data () {
+    return {
+      seller: {}
+    }
+  },
+  created () {
+    var that = this
+    this.$http.get('/api/seller').then(function (res) {
+      var _res = res.body
+      if (_res.errno === 0) {
+        // set函数，把_res.data改造了
+        that.seller = _res.data
+        console.log(that.seller)
+      }
+    })
+  },
   components: {
     'v-header': Header
   }
@@ -30,7 +46,7 @@ export default {
 </script>
 
 <style lang="stylus">
-@import './common/style/mixin.styl'
+@import './common/style/index.styl'
 
 .tab {
   width: 100%;

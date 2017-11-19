@@ -29,11 +29,12 @@ const compiler = webpack(webpackConfig)
 const devMiddleware = require('webpack-dev-middleware')(compiler, {
   publicPath: webpackConfig.output.publicPath,
   quiet: true,
-  proxy: {
-    '/api/*': {
-      target: 'http://localhost:9090'
-    }
-  }
+  // 不是在这声明，在config的proxyTable中声明
+  // proxy: {
+  //   '/api/*': {
+  //     target: 'http://127.0.0.1:9090'
+  //   }
+  // }
 })
 
 const hotMiddleware = require('webpack-hot-middleware')(compiler, {
