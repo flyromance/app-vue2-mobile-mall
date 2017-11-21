@@ -1,6 +1,6 @@
 <template>
     <div>
-      <div class="content-wrapper">
+      <!-- <div class="content-wrapper">
         <div class="avatar">
           <img width="64" height="64" :src="seller.avatar" alt="">
         </div>
@@ -13,9 +13,9 @@
             {{sell.description}} / {{seller.deliveryTime}}
           </div>
         </div>
-      </div>
+      </div> -->
       <div class="bulletin-wrapper">
-
+        {{seller.avatar}}
       </div>
     </div>
 </template>
@@ -27,8 +27,8 @@ export default {
       type: Object
     }
   },
-  created () {
-    console.log(this.props)
+  mounted () {
+    console.log(this.seller)
   }
 }
 </script>

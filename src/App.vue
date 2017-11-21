@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-  <v-header :seller="seller"></v-header>
+  <v-header v-bind="seller"></v-header>
 
   <div class="tab border-1px">
     <div class="tab-item">
@@ -28,7 +28,7 @@ export default {
       seller: {}
     }
   },
-  created () {
+  mounted () {
     var that = this
     this.$http.get('/api/seller').then(function (res) {
       var _res = res.body

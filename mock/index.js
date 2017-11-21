@@ -1,3 +1,6 @@
+// node --max_old_space_size=8000 
+
+
 var express = require('express')
 var app = express()
 var data = require('./data')
