@@ -1,26 +1,25 @@
 <template>
   <div id="app">
-  <v-header v-bind="seller"></v-header>
-
-  <div class="tab border-1px">
-    <div class="tab-item">
-      <router-link to="/goods">商品</router-link>
+    <v-header :seller="seller"></v-header>
+    <div class="tab border-1px">
+      <div class="tab-item">
+        <router-link to="/goods">商品</router-link>
+      </div>
+      <div class="tab-item">
+        <router-link to="/ratings">评论</router-link>
+      </div>
+      <div class="tab-item">
+        <router-link to="/seller">商家</router-link>
+      </div>
     </div>
-    <div class="tab-item">
-      <router-link to="/ratings">评论</router-link>
-      </div>
-    <div class="tab-item">
-      <router-link to="/seller">商家</router-link>
-      </div>
-  </div>
-
-  <router-view></router-view>
+    <router-view :seller="seller"></router-view>
   </div>
 </template>
 
 <script>
 import Header from '@/components/header'
-
+import router from './router'
+const ERR_OK = 0
 export default {
   name: 'app',
   data () {
@@ -28,20 +27,35 @@ export default {
       seller: {}
     }
   },
-  mounted () {
+  beforeCreate() {
+    // debugger
+    console.log(1, 'beforeCreate')
+  },
+  created () {
+    // debugger
+    console.log(1, 'created')
     var that = this
     this.$http.get('/api/seller').then(function (res) {
       var _res = res.body
-      if (_res.errno === 0) {
+      if (_res.errno === ERR_OK) {
         // set函数，把_res.data改造了
         that.seller = _res.data
-        console.log(_res.data.avatar)
+        // console.log(that.seller)
       }
     })
   },
+  beforeMount() {
+    // debugger
+    console.log(1, 'beforeMount')
+  },
+  mounted() {
+    // debugger
+    console.log(1, 'mounted')
+  },
   components: {
     'v-header': Header
-  }
+  },
+  router
 }
 </script>
 
