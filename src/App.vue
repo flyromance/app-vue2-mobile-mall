@@ -35,7 +35,7 @@ export default {
       if (_res.errno === 0) {
         // set函数，把_res.data改造了
         that.seller = _res.data
-        console.log(that.seller)
+        console.log(_res.data.avatar)
       }
     })
   },
