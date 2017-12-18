@@ -15,6 +15,13 @@
         <div class="pay" :class="totalPrice >= minPrice ? 'highlight' : ''">{{payDesc}}</div>
       </div>
     </div>
+    <div class="ball-container">
+      <transition-group name="drop" tag="div">
+        <div v-for="(ball, index) in balls" v-show="ball.show" :key="index" class="ball">
+          <div class="inner"></div>
+        </div>
+      </transition-group>
+    </div>
   </div>
 </template>
 
@@ -38,6 +45,27 @@ export default {
           count: 2
         }]
       }
+    }
+  },
+  data() {
+    return {
+      balls: [
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        },
+        {
+          show: false
+        }
+      ]
     }
   },
   computed: {
@@ -143,9 +171,23 @@ export default {
         font-size 16px
         text-align center
         line-height 46px
-        font-weight 700
+        font-weight 500
         background-color rgba(255, 255, 255, 0.2)     
         &.highlight
           background-color #00b43c
           color #fff
+  .ball-container
+    .ball
+      position fixed
+      left 32px
+      bottom 32px
+      z-index 200
+      &.drop-enter-active
+        transition all 0.4s linear
+        .inner
+          width 16px
+          height 16px
+          radius 50%
+          background-color rgb(0, 160, 220)
+          transition all 0.4s
 </style>
